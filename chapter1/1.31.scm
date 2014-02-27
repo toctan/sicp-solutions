@@ -19,8 +19,10 @@
 
 
 (define (pi n)
-  (define (term x)
-    (/ (* (-1+ x) (1+ x))
-       (square x)))
-  (define (inc2 x) (+ x 2))
-  (* 4 (product term 3 inc2 n)))
+  (* (product (lambda (x)
+                (/ (* (-1+ x) (1+ x))
+                   (square x)))
+              3
+              (lambda (x) (+ 2 x))
+              n)
+     4))
